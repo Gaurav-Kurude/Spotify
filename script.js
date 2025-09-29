@@ -36,7 +36,7 @@ async function getSongs(folder) {
   let songUL = document
     .querySelector(".songList")
     .getElementsByTagName("ul")[0];
-  songUL.innerHTML = "";
+  songUL.innerHTML = ""
   for (const song of songs) {
     songUL.innerHTML =
       songUL.innerHTML +
@@ -77,16 +77,18 @@ async function displayAlbums() {
   let response = await a.text();
   let div = document.createElement("div");
   div.innerHTML = response;
-  let anchors = div.getElementsByTagName("a")
-  let cardContainer = document.querySelector(".cardContainer")
-  Array.from(anchors).forEach(async e=>{
-    if(e.href.includes("/songs")){
-      let folder = e.href.split("/").slice(-2)[0]
+  let anchors = div.getElementsByTagName("a");
+  let cardContainer = document.querySelector(".cardContainer");
+  Array.from(anchors).forEach(async (e) => {
+    if (e.href.includes("/songs")) {
+      let folder = e.href.split("/").slice(-2)[0];
       // Get the metadata of the folder
-       let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`)
+      let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`);
       let response = await a.json();
       console.log(response);
-      cardContainer.innerHTML = cardContainer.innerHTML + `   <div data-folder="cs" class="card">
+      cardContainer.innerHTML =
+        cardContainer.innerHTML +
+        `   <div data-folder="cs" class="card">
             <div class="play">
               <div class="icon-circle">
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
@@ -101,9 +103,9 @@ async function displayAlbums() {
             <img src="/songs/${folder}/cover.jpg" alt="">
             <h3>${response.title}</h3>
             <p>${response.description}</p>
-      </div>`
+      </div>`;
     }
-  })
+  });
 }
 
 async function main() {
@@ -172,7 +174,9 @@ async function main() {
 
   // Add an event to volume
   document
-    .querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
+    .querySelector(".range")
+    .getElementsByTagName("input")[0]
+    .addEventListener("change", (e) => {
       console.log("Setting volume to", e.target, e.target.value, "/ 100");
       currentSong.volume = parseInt(e.target.value) / 100;
     });
