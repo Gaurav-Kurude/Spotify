@@ -202,7 +202,7 @@ async function main() {
   playMusic(songs[0], true);
 
   // Display all the albums on the page
-  displayAlbums();
+  await displayAlbums()
 
   // Attach an event listener to play, next and previous
   play.addEventListener("click", () => {
