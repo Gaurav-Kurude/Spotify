@@ -1,4 +1,0 @@
-[[redirects]]
-from = "/*"
-To = "/songs"
-status = 200
